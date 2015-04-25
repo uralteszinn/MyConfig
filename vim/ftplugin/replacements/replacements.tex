@@ -1,0 +1,456 @@
+::scrarticle::
+\documentclass[paper=a4,pagesize,11pt,draft=false]{scrartcl}
+<<VIM:EMPTY>>
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{scrpage2}               
+%insertUsepackages
+\usepackage{hyperref}
+%=== Mine =====
+\usepackage{mycommands}
+<<VIM:EMPTY>>
+%===================================================
+<<VIM:EMPTY>>
+\setlength{\parindent}{0ex}
+<<VIM:EMPTY>>
+%===================================================
+<<VIM:EMPTY>>
+%insertNTheorem
+<<VIM:EMPTY>>
+%===================================================
+<<VIM:EMPTY>>
+\clearscrheadings
+\clearscrplain
+<<VIM:EMPTY>>
+\ihead[]{}
+\chead[<<VIM:INPUT|1|Titel>>]{<<VIM:INPUT|1>>}
+\ohead[]{}
+<<VIM:EMPTY>>
+\ifoot[<<VIM:INPUT|2|Autor>>]{<<VIM:INPUT|2>>}
+\cfoot[]{}
+\ofoot[<<VIM:OPTIONINPUT|1|Pagemark Choice|\pagemark,|||Pagemark,None>>]{<<VIM:OPTIONINPUT|1>>}
+<<VIM:EMPTY>>
+\pagestyle{scrheadings}
+<<VIM:EMPTY>>
+%===================================================
+<<VIM:EMPTY>>
+\begin{document}
+<<VIM:EMPTY>>
+%insertTitle
+<<VIM:EMPTY>>
+%\tableofcontents
+<<VIM:EMPTY>>
+<++>
+<<VIM:EMPTY>>
+\end{document}
+<<VIM:EMPTY>>
+%insertVim
+
+
+::scrletter::
+\documentclass[paper=a4,pagesize,11pt,draft=false]{scrlttr2}
+<<VIM:EMPTY>>
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+%\usepackage{scrpage2}
+%insertUsepackages
+\usepackage{hyperref}
+<<VIM:EMPTY>>
+%===================================================
+<<VIM:EMPTY>>
+\setlength{\parindent}{0ex}
+<<VIM:EMPTY>>
+%===================================================
+<<VIM:EMPTY>>
+%insertNTheorem
+<<VIM:EMPTY>>
+%===================================================
+<<VIM:EMPTY>>
+\LoadLetterOption{SN}
+<<VIM:EMPTY>>
+\setkomavar{fromname}{\ttfamily Laurin Stenz}
+\setkomavar{fromaddress}{\ttfamily Am Bogen 1\\ 5620 Bremgarten}
+\setkomavar{fromphone}{\ttfamily Laurin Stenz\\\ttfamily 079\hspace{0.3ex}/\hspace{0.3ex}916 90 47}
+\setkomavar{fromemail}{\url{laurinstenz@gmail.com}}
+\setkomavar*{fromphone}{}
+\setkomavar*{fromemail}{}
+\setkomavar{place}{Bremgarten}
+\setkomavar{title}{<<VIM:INPUT|5|Title>>}
+\setkomavar{subject}{<<VIM:INPUT|6|Subject>>}
+\setkomavar{signature}{Laurin Stenz}
+\KOMAoptions{fromemail,fromphone,fromalign=left,foldmarks=false}
+<<VIM:EMPTY>>
+%===================================================
+<<VIM:EMPTY>>
+\begin{document}
+<<VIM:EMPTY>>
+\begin{letter}{<<VIM:INPUT|1|Addresser>>\\<<VIM:INPUT|2|Street>>\\<<VIM:INPUT|3|PLZ>> <<VIM:INPUT|4|Place>>}
+    \opening{<<VIM:INPUT|7|Opening>>}
+        <++>
+    \closing{<<VIM:INPUT|8|Closing>>\\[5mm]}
+\end{letter}
+<<VIM:EMPTY>>
+\end{document}
+<<VIM:EMPTY>>
+%insertVim
+
+::beamer::
+\documentclass[hyperref={pdfpagelabels=false}]{beamer}
+<<VIM:EMPTY>>
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{scrpage2}
+%insertUsepackages
+\usepackage{hyperref}
+%=== Mine =====
+\usepackage{mycommands}
+<<VIM:EMPTY>>
+%===================================================
+<<VIM:EMPTY>>
+\setlength{\parindent}{0ex}
+<<VIM:EMPTY>>
+%===================================================
+<<VIM:EMPTY>>
+%insertNTheorem
+<<VIM:EMPTY>>
+%===================================================
+<<VIM:EMPTY>>
+\title{<<VIM:INPUT|1|Title Presentation>>}   
+\author{<<VIM:INPUT|2|Author>>} 
+\date{<<VIM:INPUT|3|Date>>} 
+<<VIM:EMPTY>>
+%===================================================
+<<VIM:EMPTY>>
+\usetheme{Hannover}
+<<VIM:EMPTY>>
+\begin{document}
+<<VIM:EMPTY>>
+\begin{frame}
+    \titlepage
+\end{frame} 
+<<VIM:EMPTY>>
+\begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents
+\end{frame} 
+<<VIM:EMPTY>>
+\begin{frame}
+    \frametitle{<<VIM:INPUT|4|Title First Slide>>}
+    \framesubtitle{<<VIM:INPUT|5|Subtitle First Slide>>}
+    <++>
+\end{frame}<++>
+<<VIM:EMPTY>>
+\end{document}
+<<VIM:EMPTY>>
+%insertVim
+
+::insertVim::
+% VIM: CompileDirectory = <<VIM:DIRPATH>>
+% VIM: CompileCommand = pdflatex '<<VIM:FILEPATH>>'
+% VIM: ViewCommand = evince '<<VIM:DIRPATH>>/<<VIM:FILENAMENOEXTENSION>>.pdf' &<++>
+
+::insertUsepackages::
+%\usepackage{scrdate}
+%\usepackage{scrtime}
+%\usepackage{lastpage}
+\usepackage{tikz}
+%\usepackage{setspace}
+\usepackage{array}
+\usepackage{multirow}
+%\usepackage{enumitem}
+%\usepackage{enumerate}
+%\usepackage{color}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage[intlimits]{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+%\usepackage{extpfeil}
+%\usepackage{marvosym}
+%\usepackage{wasysym}
+%\usepackage{pifont}
+\usepackage[framed,thmmarks,thref,amsmath]{ntheorem}
+%\usepackage[ntheorem]{empheq}
+\usepackage{framed}<++>
+
+
+::insertTitle::
+%\subject{}
+\title{<<VIM:INPUT|1|Title>>}
+%\subtitle{}
+\author{<<VIM:INPUT|2|Author>>}
+\date{<<VIM:INPUT|3|Date>>}
+%\publishers{}
+%\dedication{}
+%\thanks{}
+%\uppertitleback{}
+%\lowertitleback{}
+%\extratitle{}
+%\titlehead{}
+<<VIM:EMPTY>>
+\maketitle<++>
+
+
+
+
+::insertNTheorem::
+\usepackage{mythm}
+<<VIM:EMPTY>>
+%\renewcommand{\mytheoremheaderfont}{\color{blue}\normalfont\bfseries}
+%\renewcommand{\mytheoremoptheaderfont}{\normalfont\scriptsize}
+%\theorembodyfont{\normalfont}
+<<VIM:EMPTY>>
+%\theoremindent0.5ex
+%\setlength{\theorempreskipamount}{0.5ex}
+%\setlength{\theorempostskipamount}{0.5ex}
+<<VIM:EMPTY>>
+%\definecolor{gray}{gray}{0.8}
+%\def\theoremframecommand{\colorbox{gray}}
+<<VIM:EMPTY>>
+\theoremstyle{mynonumberthm}
+\newframedtheorem{defn}{Definition}[section]
+<<VIM:EMPTY>>
+\theoremstyle{mythm}
+\newframedtheorem{thm}{Theorem}[section]
+\newframedtheorem{satz}[thm]{Satz}
+\newframedtheorem{prop}[thm]{Proposition}
+\newframedtheorem{lem}[thm]{Lemma}
+\newframedtheorem{cor}[thm]{Corollary}
+\newframedtheorem{kor}[thm]{Korollar}
+<<VIM:EMPTY>>
+\theoremstyle{mynonumberthm}
+\theoremindent0ex
+\theoremsymbol{{\color{black}/\!\!/}}
+\newtheorem{ex}{Example}[section]
+\newtheorem{rem}{Remark}[section]
+\newtheorem{bsp}{Beispiel}[section]
+\newtheorem{bem}{Bemerkung}[section]
+<<VIM:EMPTY>>
+\theoremstyle{mybew}
+\theoremindent0ex
+\theoremsymbol{{\color{black}\(\blacksquare\)}}
+\newtheorem{pf}{Proof}
+\newtheorem{bew}{Beweis}<++>
+
+
+
+::table::
+\begin{table}<<VIM:INPUT|1|Optional Argument||[|]>>
+    \centering
+    <<VIM:EMPTY>>
+    \begin{tabular}{<++>}
+        <++>
+    \end{tabular}
+    <<VIM:EMPTY>>
+    \caption{<<VIM:INPUT|2|Name>>}
+    \label{table-<<VIM:RANDOM>>}
+\end{table}<++>
+
+
+::tabular::
+\begin{tabular}{<++>}
+    <++>
+\end{tabular}<++>
+
+::multicolumn::
+\multicolumn{<++>}{<++>}{<++>}<++>
+
+::multirow::
+\multirow{<++>}{<++>}{<++>}<++>
+
+::itemize::
+\begin{itemize}
+<<VIM:TAB>>\item <++>
+\end{itemize}
+
+::enumerate::
+\begin{enumerate}
+<<VIM:TAB>>\item <++>
+\end{enumerate}
+
+::description::
+\begin{description}
+<<VIM:TAB>>\item[<++>] <++>
+\end{description}
+
+::item::
+<<VIM:EMPTY>>
+<<VIM:NOBEFOREPART>>\item<<VIM:INPUT|1|Optional Argument||[|]>> <++>
+
+::footnote::
+\footnote{<<VIM:CURSOR}<++>
+
+
+
+::part::
+\part<<VIM:CHOICE|1|With Number?|,*>>{<<VIM:INPUT|1|Title>>}
+\label{part-<<VIM:RANDOM>>}
+<++>
+
+::chapter::
+\chapter<<VIM:CHOICE|1|With Number?|,*>>{<<VIM:INPUT|1|Title>>}
+\label{chapter-<<VIM:RANDOM>>}
+<++>
+
+::section::
+\section<<VIM:CHOICE|1|With Number?|,*>>{<<VIM:INPUT|1|Title>>}
+\label{section-<<VIM:RANDOM>>}
+<++>
+
+::subsection::
+\subsection<<VIM:CHOICE|1|With Number?|,*>>{<<VIM:INPUT|1|Title>>}
+\label{subsection-<<VIM:RANDOM>>}
+<++>
+
+::subsubsection::
+\subsubsection<<VIM:CHOICE|1|With Number?|,*>>{<<VIM:INPUT|1|Title>>}
+\label{subsubsection-<<VIM:RANDOM>>}
+<++>
+
+::paragraph::
+\paragraph<<VIM:CHOICE|1|With Number?|,*>>{<<VIM:INPUT|1|Title>>}
+\label{paragraph-<<VIM:RANDOM>>}
+<++>
+
+::subparagraph::
+\subparagraph<<VIM:CHOICE|1|With Number?|,*>>{<<VIM:INPUT|1|Title>>}
+\label{subparagraph-<<VIM:RANDOM>>}
+<++>
+
+::label::
+\label{<<VIM:INPUT|1|Category>>-<<VIM:RANDOM>>}<++>
+
+::figure::
+\begin{figure}<<VIM:INPUT|1|Optional Argument||[|]>>
+    \centering
+    <<VIM:EMPTY>>
+    <++>
+    <<VIM:EMPTY>>
+    \caption{<<VIM:INPUT|1|Name>>}
+    \label{figure-<<VIM:RANDOM>>}
+\end{figure}<++>
+
+::img::
+\includegraphics<<VIM:INPUT|1|Optional Height||[height=|]>>{<++>}<++>
+
+::frame::
+\begin{frame}
+    \frametitle{<<VIM:INPUT|4|Title>>}
+    \framesubtitle{<<VIM:INPUT|5|Subtitle>>}
+    <++>
+\end{frame}<++>
+
+
+::lim::
+\lim<++>_{<++>}<++>
+
+::int::
+\<++>int_{<++>}^{<++>}<++>\;\mathrm{d}<++>
+
+::sum::
+\sum_{<++>}^{<++>}<++>
+
+::prod::
+\prod_{<++>}^{<++>}<++>
+
+::frac::
+\frac{<++>}{<++>}<++>
+
+::sqrt::
+\sqrt[<++>]{<++>}<++>
+
+::bigcup::
+\bigcup_{<++>}^{<++>}<++>
+
+::bigcap::
+\bigcap_{<++>}^{<++>}<++>
+
+::bigoplus::
+\bigoplus_{<++>}^{<++>}<++>
+
+::bigominus::
+\bigominus_{<++>}^{<++>}<++>
+
+::bigodot::
+\bigodot_{<++>}^{<++>}<++>
+
+::bigotimes::
+\bigotimes_{<++>}^{<++>}<++>
+
+::d::
+\mathrm{d}<++>
+
+::rm::
+\mathrm{<++>}<++>
+
+::bb::
+\mathbb{<++>}<++>
+
+::cal::
+\mathcal{<++>}<++>
+
+::t::
+\text{<++>}<++>
+
+::diff::
+\frac{\mathrm{d<++>}}{\mathrm{d}<++>}<++>
+
+::R::
+\mathbb{R}<++>
+
+::pmatrixinline::
+\begin{pmatrix} <++> \end{pmatrix} <++>
+
+::smallmatrix::
+\left( \begin{smallmatrix} <++> \end{smallmatrix} \right) <++>
+
+::tikz::
+\begin{tikzpicture}<<VIM:INPUT|1|Optional Argument||[|]>>
+    <++>
+\end{tikzpicture}
+
+::coordinate::
+\coordinate (<++>) at (<++>);<++>
+
+::path::
+\path<<VIM:INPUT|1|Optional Argument||[|]>> <++>;<++>
+
+::draw::
+\draw<<VIM:INPUT|1|Optional Argument||[|]>> <++>;<++>
+
+::fill::
+\fill<<VIM:INPUT|1|Optional Argument||[|]>> <++>;<++>
+
+::filldraw::
+\filldraw<<VIM:INPUT|1|Optional Argument||[|]>> <++>;<++>
+
+::pt::
+<++>(<++>)<++>
+
+::node::
+\node<<VIM:INPUT|1|Optional Argument||[|]>><<VIM:INPUT|2|Name|| (|)|>> at (<++>) {<++>};<++>
+
+::circle::
+<++>(<++>) circle (<++>)<++>
+
+::rectangle::
+(<++>) rectangle <++>(<++>)<++>
+
+::foreach::
+\foreach <++> in {<++>} {
+<<VIM:TAB>><++>
+}
+
+::defaultName::
+\begin{<<VIM:NAME>>}
+<<VIM:TAB>><++>
+\end{<<VIM:NAME>>}<++>
+
+::defaultNoName::
+\begin{align*}
+<<VIM:TAB>><++>
+\end{align*}<++>
+
+::test::
+<<VIM:OPTION|1|Gugus|a,b,c,d,f,g|>>
+<<VIM:OPTIONINPUT|2|Gogos|a,b,c,d,f,g|>>
