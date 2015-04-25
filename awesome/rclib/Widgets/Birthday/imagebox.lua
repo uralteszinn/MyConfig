@@ -1,0 +1,1 @@
+birthdayImage  = wibox.widget.imagebox()

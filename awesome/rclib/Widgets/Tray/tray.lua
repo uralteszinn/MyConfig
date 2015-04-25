@@ -1,0 +1,1 @@
+tray = wibox.widget.systray()

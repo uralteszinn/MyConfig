@@ -1,0 +1,24 @@
+--In ip.lua chasch eifach folgendes ersetze:
+--------------------------------------------
+
+    if not hadIP then
+      naughty.notify({title     = "IP Address",
+                      text      = "Your IP address is " .. ip,
+                      preset    = naughty.config.presets.normal,
+                    })
+      hadIP = true
+    end
+
+--------------------------------------------
+--dur folgendes:
+--------------------------------------------
+
+    if not hadIP then
+      awful.util.spawn_with_shell("killall dropbox")
+      awful.util.spawn_with_shell("dropboxd")
+      naughty.notify({title     = "IP Address",
+                      text      = "Your IP address is " .. ip,
+                      preset    = naughty.config.presets.normal,
+                    })
+      hadIP = true
+    end

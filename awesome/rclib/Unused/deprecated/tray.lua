@@ -1,0 +1,1 @@
+mysystray = wibox.widget.systray()

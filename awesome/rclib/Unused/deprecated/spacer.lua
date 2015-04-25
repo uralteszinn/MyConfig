@@ -1,0 +1,1 @@
+space = wibox.widget.textbox(" ")
