@@ -1,0 +1,7 @@
+background blue
+geometry 1x1-150+0
+grow_gravity E
+icon_gravity NW
+icon_size 16
+slot_size 22
+#transparent true

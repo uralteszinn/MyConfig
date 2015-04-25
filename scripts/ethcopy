@@ -1,0 +1,3 @@
+#!/bin/bash
+
+scp "$*" stenzl@slab1.ethz.ch:/nas/stenzl/homepage/download

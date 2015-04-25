@@ -1,0 +1,82 @@
+#!/bin/bash
+
+#mount /mnt/sdb1/
+echo -n "|"
+
+# Datum
+#rm -f $1/date
+#touch $1/date
+#date > $1/date
+
+# Ordner
+cp -r /home/laurin/.zsh.d $1
+echo -n "="
+cp -r /home/laurin/.bash.d $1
+echo -n "="
+
+cp -r /home/laurin/.xmonad $1
+echo -n "="
+cp -r /home/laurin/.config/awesome $1
+echo -n "="
+cp -r /home/laurin/.config/awesome2 $1
+echo -n "="
+cp -r /home/laurin/.config/xmobar $1
+echo -n "="
+
+cp -r /etc/vpnc $1
+echo -n "="
+
+cp -r /home/laurin/.colemak $1
+echo -n "="
+cp -r /home/laurin/.config/myconfig $1
+echo -n "="
+cp -r /home/laurin/.scripts $1
+echo -n "="
+
+cp -r /home/laurin/.vim $1
+echo -n "="
+cp -r /home/laurin/.texmf $1
+echo -n "="
+
+cp -r /home/laurin/.config/dwb $1
+echo -n "="
+
+cp -r /home/laurin/.cpp $1
+echo -n "="
+
+# Files
+cp /home/laurin/.zshrc $1
+echo -n "="
+cp /home/laurin/.zshenv $1
+echo -n "="
+cp /home/laurin/.zprofile $1
+echo -n "="
+cp /home/laurin/.zhistory $1
+echo -n "="
+cp /home/laurin/.bashrc $1
+echo -n "="
+cp /home/laurin/.bash_profile $1
+echo -n "="
+cp /home/laurin/.bash_history $1
+echo -n "="
+cp /home/laurin/.vimrc $1
+echo -n "="
+cp /home/laurin/.pentadactylrc $1
+echo -n "="
+cp /home/laurin/.Xdefaults $1
+echo -n "="
+cp /home/laurin/.Xresources $1
+echo -n "="
+cp /etc/rc.conf $1
+echo -n "="
+cp /etc/rc.local $1
+echo -n "="
+cp /etc/profile $1
+echo -n "="
+cp /etc/slim.conf $1
+echo -n "="
+cp /usr/share/X11/xkb/symbols/us $1
+echo -n "="
+
+#umount /mnt/sdb1/
+echo "|"

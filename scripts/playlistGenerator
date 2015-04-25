@@ -1,0 +1,72 @@
+#!/bin/ruby
+# Just run 'playlistGenerator' in the shell!
+
+
+# Path to directories contain the last slash!
+
+def getHomeDir
+  `echo $HOME`.chomp + "/"
+end
+
+def getMusicLibraryDir
+  res = ""
+  str = `cat "#{getHomeDir}.mpd/mpd.conf" | grep music_directory`
+  str.each_line do |line|
+    if line =~ /^\s*music_directory\s+[^\s]+\s*$/
+      res = line.gsub(/^\s*music_directory\s+"/,"")
+      res = res.gsub(/"\s*$/,"")
+      res = res.gsub(/~/,getHomeDir[0..-2]) + "/"
+    end
+  end
+
+  unless res =~ /^\/[^\s]+\/$/
+    puts "Didn't find the path to the music library in .mpd/mpd.conf!"
+  end
+
+  return res
+end
+
+def getDestinationDir
+  return getHomeDir + ".mpd/playlists/"
+end
+
+def clearDestinationDir
+  `rm #{getDestinationDir}*.m3u`
+end
+
+def getTypes
+  str = `ls -1 "#{getMusicLibraryDir}"`
+  return str.split("\n")
+end
+
+def getTypEntries(typ)
+  str = `ls -1 "#{getMusicLibraryDir}#{typ}/"`
+  return str.split("\n")
+end
+
+def generatePlaylist(typ,entry)
+  playlist = File.open("#{getDestinationDir}#{typ.gsub(" ","")}-#{entry.gsub(" ","")}.m3u", "w")
+  str = `ls -1 "#{getMusicLibraryDir}#{typ}/#{entry}/"`
+  array = str.split("\n")
+  array.each do |song|
+    playlist.puts typ + "/" + entry + "/" + song
+  end
+  playlist.close
+end
+
+clearDestinationDir
+
+getTypes.each do |typ|
+  puts
+  puts typ
+  puts
+  i = 0
+  getTypEntries(typ).each do |entry|
+    print '#'
+    i = i+1
+    generatePlaylist(typ,entry)
+  end
+  print " (#{i})"
+  puts
+end
+puts

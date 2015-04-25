@@ -1,0 +1,34 @@
+#!/bin/ruby
+# barcode <barcode> <type> <name(noExtension)> 
+
+require 'tempfile'
+
+file = Tempfile.new(['tmpBarcode','.tex'])
+
+begin
+    file.write('\documentclass[paper=a4,pagesize,11pt,draft=false]{scrartcl}' + "\n")
+    file.write('\usepackage{scrpage2}' + "\n")
+    file.write('\usepackage{pst-barcode}' + "\n")
+    file.write('\clearscrheadings' + "\n")
+    file.write('\pagestyle{scrheadings}' + "\n")
+    file.write('\begin{document}' + "\n")
+    file.write('\psbarcode{' + ARGV[0] + '}{includetext}{' + ARGV[1] + '}' + "\n")
+    file.write('\end{document}' + "\n")
+    file.close
+
+    filedir  = file.path.gsub(/\/[^\/]*$/,'')
+    filename = file.path.gsub(/\.tex$/,'')
+
+    Dir.chdir(filedir) do
+        system "latex '#{file.path}'"
+        system "dvips '#{filename}.dvi'"
+        system "ps2pdf '#{filename}.ps'"
+        system "pdfcrop '#{filename}.pdf' '#{filename}.pdf'"
+        #system "convert -density 900 '#{filename}.pdf' '#{filename}.png'" 
+    end
+    system "cp '#{filename}.pdf' '#{ARGV[2]}.pdf' > /dev/null"
+    system "rm '#{filename}.tex' '#{filename}.aux' '#{filename}.log' '#{filename}.dvi' '#{filename}.ps' '#{filename}.pdf'"
+ensure
+    file.close
+    file.unlink   # deletes the temp file
+end

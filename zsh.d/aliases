@@ -1,0 +1,52 @@
+#!/bin/zsh
+
+alias sudo='sudo '
+alias die='systemctl poweroff'
+alias die='systemctl poweroff'
+alias redie='systemctl reboot'
+
+alias m=". m.sh"
+
+#alias vim='gvim --servername GVIM --remote-silent-tab'
+
+alias ls='ls --color=auto --group-directories-first'
+alias la='ls -A --color=auto --group-directories-first'
+alias ll='ls -l --color=auto --group-directories-first'
+alias lla='ls -lA --color=auto --group-directories-first'
+
+alias grep='grep --color=auto'
+alias lauft='ps -e | grep '
+
+alias y='yaourt'
+alias yinstall='yaourt -S'
+alias yfind='yaourt -Ss'
+alias yremove='yaourt -R'
+alias ysys-update='yaourt -Syyu'
+
+alias pacmirror-update='sudo reflector -l 8 --sort rate --save /etc/pacman.d/mirrorlist'
+
+alias pacsys-update='sudo pacman -Syyu'
+alias pacfind='pacman -Ss'
+alias pacinstall='sudo pacman -S'
+alias pacremove='sudo pacman -Rs'
+
+alias mymplayer='mplayer -af equalizer=-12:-9:-6:-3:2:2:2:2:2:2 -nosub'
+
+#alias aursys-update='aurget --discard --noedit -Syu'
+#alias aurfind='aurget -Ss'
+#alias aurinstall='aurget --discard --noedit -S'
+
+# TEMPORÄR!!!
+#alias ds='xrandr --output LVDS1 --off; sleep 1; xrandr --output VGA1 --auto'
+# Beamer ETZ J 19
+alias etzStart='xrandr --output eDP1 --mode 1024x768'
+alias etzStop='xrandr --output eDP1 --auto'
+
+#alias cb='cd /home/laurin/Documents/Basispruefung/'
+#alias moba='. /home/laurin/.shellscripts/moba'
+#alias umoba='. /home/laurin/.shellscripts/umoba'
+
+#WINE
+
+alias banana70='wine /home/laurin/.wine/drive_c/Program\ Files\ (x86)/Banana70/Banana70.exe'
+alias ztree='wine /home/laurin/zTree/ztree.exe'

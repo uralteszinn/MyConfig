@@ -1,0 +1,13 @@
+#!/bin/bash
+
+gxmessage -bg black -fg forestgreen -buttons "Cancel:0,Suspend:4,Reboot:3,Shutdown:2" -default "Shutdown"  -title "What shall it be?" -timeout 5 "
+
+         Hold it up to the light... not a brain in sight!"
+
+case $? in 
+  0) echo The action has been aborted!;;
+  1) echo The action has been aborted!;;
+  2) sudo poweroff;;
+  3) sudo reboot;;
+  4) sudo pm-suspend;;
+esac

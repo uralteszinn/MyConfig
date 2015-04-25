@@ -1,0 +1,11 @@
+#!/bin/bash
+
+txtrst='\e[0m'    # Text Reset
+
+bgc=$bldred
+fgc=$txtylw
+fgcb=$bldylw
+
+PS1="\[$bgc\]/--(\[$fgc\]\u@\h\[$bgc\])--(\[$fgc\]\w\[$bgc\])\n\[$bgc\]\--(\[$fgcb\]\W\[$bgc\])--(\[$fgc\]\$(/bin/ls -1 | /usr/bin/wc -l | /bin/sed 's: ::g') files\[$bgc\])--> \[$fgc\]\\$ \[$txtrst\]"
+
+#PS1="\[$bgc\]/--(\`if [ \$? = 0 ]; then echo \[\e[32m\]; else echo \[\e[31m\]; fi\`!\!\[$bgc\])--(\[$fgc\]\u@\h\[$bgc\])--(\[$fgc\]\w\[$bgc\])\n\[$bgc\]\--(\[$fgcb\]\W\[$bgc\])--(\[$fgc\]\$(/bin/ls -1 | /usr/bin/wc -l | /bin/sed 's: ::g') files\[$bgc\])--> \\$ \[$txtrst\]"

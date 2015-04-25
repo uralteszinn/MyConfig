@@ -1,0 +1,30 @@
+#!/bin/zsh
+
+function zle-keymap-select {
+    VIMODE="${${KEYMAP/vicmd/}/(main|viins)/-- INSERT --}"
+    zle reset-prompt
+}
+
+function accept_line {
+    VIMODE="-- INSERT --"
+    builtin zle .accept-line
+}
+
+zle -N zle-keymap-select
+zle -N accept_line
+
+bindkey -a "^M" accept_line
+
+setprompt () {
+    setopt prompt_subst
+    autoload colors
+    if [[ "$terminfo[colors]" -gt 8 ]]; then
+        colors
+    fi
+    VIMODE="-- INSERT --"
+    PROMPT='%{${fg[red]}%}/--(%{${fg[yellow]}%}%n@%M%{${fg[red]}%})--(%{${fg[yellow]}%}%/%{${fg[red]}%})
+%{${fg[red]}%}\--(%{${fg[yellow]}%}%B%1~%b%{${fg[red]}%})--> %{${fg[yellow]}%}%# %{${fg[white]}%}'
+    RPROMPT='%{${fg[yellow]}%}${VIMODE}%{${fg[white]}%}'
+}
+
+setprompt

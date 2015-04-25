@@ -1,0 +1,6 @@
+[Default Applications]
+application/pdf=evince.desktop
+video/avi=vlc.desktop
+video/flv=vlc.desktop
+application/x-bittorrent=transmission-gtk.desktop
+x-scheme-handler/magnet=transmission-gtk.desktop

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+Xephyr -ac -br -noreset -screen 600x400 :1 &
+
+DISPLAY=:1.0 awesome -c /home/laurin/.config/awesome/myrc.lua

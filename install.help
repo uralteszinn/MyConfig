@@ -1,0 +1,62 @@
+== On installation ===================================
+
+base
+base-devel
+
+wireless_tools
+mlocate
+reflector
+links
+zsh
+
+alsa-utils
+
+xorg-server
+xorg-xinit
+xorg-utils
+xorg-server-utils
+mesa
+dbus
+
+nvidia       | xf86-video-nouveau | xf86-video-intel
+nvidia-utils |                    | 
+
+awesome
+acpi
+lynx
+feh
+dropbox
+wpa_supplicant_gui
+ttf-bitstream-vera
+
+net-tools
+pkgconfig
+
+== Later ===================================
+
+xterm
+gxmessage
+dmenu
+autojump
+ruby
+gvim
+
+rxvt-unicode
+evince
+firefox
+dwb
+vlc
+mplayer
+nautilus
+
+ntp
+libwebkit
+
+bzflag
+pacman-color
+
+== Optional ================================
+
+(aurget)
+(stalonetray)
+(apvlv)

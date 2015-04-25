@@ -1,0 +1,18 @@
+noremap n j
+noremap e k
+noremap i l
+noremap k n
+noremap K N
+noremap u i
+noremap U I
+noremap l u
+noremap L U
+noremap N J
+noremap E K
+noremap I L
+
+noremap gh gT
+noremap gi gt
+
+noremap H <C-o>
+noremap I <C-i>

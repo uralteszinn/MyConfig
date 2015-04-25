@@ -1,0 +1,4 @@
+#!/bin/bash
+
+#fortune -a | cowsay -f $(ls /usr/share/cows/*.cow | shuf | head -n1 )
+#echo ""

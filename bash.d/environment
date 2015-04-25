@@ -1,0 +1,6 @@
+#!/bin/bash
+
+export PATH="${PATH}:.:/home/laurin/.haskellscripts/:/home/laurin/.shellscripts:/home/laurin/.rubyscripts"
+
+export TEXMFHOME='/home/laurin/.texmf'
+export SCALA_HOME='/usr/bin/'

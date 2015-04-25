@@ -1,0 +1,4 @@
+#!/bin/bash
+
+complete -cf sudo
+complete -cf man

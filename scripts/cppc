@@ -1,0 +1,3 @@
+str=$1
+name=${str:0:${#str} - 4}
+gcc $1 -o $name -I/home/laurin/.cpp/include -L/home/laurin/.cpp/lib -linteger -lloaded_dice -lrandom -lturtle -lturtle_ps -lwindow

@@ -1,0 +1,16 @@
+URxvt.saveLines: 20000
+URxvt.scrollBar: false
+URxvt.foreground: gray
+URxvt.background: black
+URxvt.secondaryScroll: true
+URxvt.font: xft:Bitstream Vera Sans Mono:pixelsize=12
+#URxvt.perl-ext-common: digital-clock,default,matcher
+URxvt.perl-ext-common: default,matcher
+URxvt.urlLauncher: firefox
+URxvt.matcher.button: 1
+URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+URxvt*termName: rxvt-unicode
+
+#URxvt.colorIT: #00ff00
+#URxvt.colorBD: #ffa812
+#URxvt.colorUL: #ff0000

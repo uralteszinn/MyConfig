@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sudo wpa_supplicant -Dwext -iwlan0 -c ~/.config/wpa_supplicant.conf && sudo dhcpcd wlan0

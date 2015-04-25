@@ -1,0 +1,6 @@
+#!/bin/bash
+
+sshfs tischfussball@progtest.kanti-wohlen.ch:Basispruefung /home/laurin/Documents/Basispruefung/
+cd /home/laurin/Documents/Basispruefung/
+cp /home/laurin/Documents/.bkp1basispruefung/*.tex /home/laurin/Documents/.bkp2basispruefung/
+cp *.tex /home/laurin/Documents/.bkp1basispruefung/

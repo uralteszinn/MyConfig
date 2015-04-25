@@ -1,0 +1,6 @@
+#!/bin/zsh
+orig=$1
+output=$2
+
+pdfcrop $1 /tmp/crop.pdf
+convert -density 900 /tmp/crop.pdf $2

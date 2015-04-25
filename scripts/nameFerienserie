@@ -1,0 +1,11 @@
+#!/bin/bash
+
+dir="/home/laurin/Dropbox/MathematicsBSc/2011HS-Pruefung/MMP1/Ferienserie"
+
+counter=`cat $dir/total/version`
+
+cp "$dir/musterloesung.pdf" "$dir/total/MMP - Ferienserie - Solutions - v$counter.pdf"
+
+let counter=$counter+1
+
+echo $counter > $dir/total/version

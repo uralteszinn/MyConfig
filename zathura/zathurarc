@@ -1,0 +1,10 @@
+set scroll_wrap false
+
+map n scroll down
+map e scroll up
+map i scroll right
+map N navigate next
+map E navigate previous
+
+map k search next
+

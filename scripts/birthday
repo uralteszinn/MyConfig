@@ -1,0 +1,64 @@
+#!/usr/bin/ruby
+
+class Person 
+
+  def initialize(name, by, bm, bd)
+    @name=name
+    @by=by
+    @bm=bm
+    @bd=bd
+  end
+
+  def to_s
+    d = daysToWait
+    if d > 1
+      str = "in " + daysToWait.to_s + " days"
+    elsif d == 1
+      str = "tomorrow"
+    elsif d == 0
+      str = "today"
+    end
+    @name + " " + @bd.to_s + "." + @bm.to_s + "." + @by.to_s + " (turns " + ageThen.to_s + " " + str + ")"
+  end
+
+  def ageNow
+    act      = Time.now
+    y        = act.year
+    birthday = Time.new(y,@bm,@bd,23,59,59)
+    if act < birthday
+      y - @by - 1
+    else
+      y - @by
+    end
+  end
+
+  def ageThen
+    act = Time.now
+    y = act.year
+    birthday = Time.new(y,@bm,@bd,23,59,59)
+    if act < birthday
+      y - @by
+    else
+      y - @by + 1
+    end
+  end
+
+  def daysToWait
+    act = Time.now
+    birthday = Time.new(act.year,@bm,@bd,23,59,59)
+    if act > birthday
+      birthday = Time.new(act.year+1, @bm,@bd)
+    end
+    res = (birthday - act) / 86400
+    res.floor
+  end
+
+end
+
+class PersonsList
+
+  def initialize
+
+  end
+
+end

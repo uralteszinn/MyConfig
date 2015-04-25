@@ -1,0 +1,85 @@
+\ProvidesPackage{mycommands}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\CP}{\mathbb{CP}}
+
+\newcommand{\dd}{\; \mathrm{d}}
+\newcommand{\todef}[1]{\textcolor{red}{\emph{#1}}}
+\newcommand{\spann}[1]{\left\langle{} #1 \right\rangle{}}
+\newcommand{\myspan}{\operatorname{span}}
+\newcommand{\stab}[1]{\operatorname{Stab}_{#1}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\syl}{\operatorname{Syl}}
+\newcommand{\quotient}[2]{#1/#2}
+\newcommand{\backquotient}[2]{#1\backslash#2}
+\newcommand{\bigslant}[2]{{\raisebox{.3em}{$#1$}\!\left/\raisebox{-.3em}{$#2$}\right.}}
+\newcommand{\bigbackslant}[2]{{\raisebox{-.3em}{#1}\!\left\backslash\raisebox{.3em}{#2}\right.}}
+\newcommand{\fext}[2]{#1/#2}
+\newcommand{\gal}[2]{\operatorname{Gal}(#1/#2)}
+\newcommand{\galp}[1]{\operatorname{Gal}(#1)}
+\newcommand{\fix}{\operatorname{Fix}}
+\newcommand{\ncr}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\newcommand{\cont}{\operatorname{cont}}
+\newcommand{\Char}{\operatorname{char}}
+\newcommand{\gl}{\operatorname{GL}}
+\newcommand{\tr}{\operatorname{Tr}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\grad}{\operatorname{grad}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Mat}{\operatorname{Mat}}
+\newcommand{\Gr}{\operatorname{Gr}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Cone}{\operatorname{Cone}}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\widerspruch}{\lightning}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\krdim}{\operatorname{krdim}}
+\newcommand{\transcDeg}{\operatorname{tr}}
+\newcommand{\Ob}{\operatorname{Ob}}
+\newcommand{\Spec}{\operatorname{Spec}}
+
+
+
+\newcommand{\vekD}[3]{\begin{pmatrix} #1\\#2\\#3 \end{pmatrix} }
+\newcommand{\vekDsmall}[3]{\left( \begin{smallmatrix} #1\\#2\\#3 \end{smallmatrix} \right)}
+\newcommand{\vekZ}[2]{\begin{pmatrix} #1\\#2 \end{pmatrix} }
+\newcommand{\vekZsmall}[2]{\left( \begin{smallmatrix} #1\\#2 \end{smallmatrix} \right)}
+
+
+\newcommand{\aut}{\operatorname{Aut}}
+
+\setlength{\marginparwidth}{2.2cm}
+\let\oldmarginpar\marginpar
+\renewcommand{\marginpar}[1]{\oldmarginpar[\raggedleft\scriptsize #1]{\raggedright\scriptsize #1}}
+
+\newcommand{\prob}[1]{\marginpar{\color{red}\Huge \begin{center}\frownie\\\tiny #1\end{center}}}
+\newcommand{\mpf}{\marginpar{\color{orange}\Huge \begin{center}\frownie\\\tiny Proof's missing\end{center}}}
+\newcommand{\done}[1]{$\;\checkmark_{\text{\tiny#1}}$}
+\newcommand*{\longhookrightarrow}{\ensuremath{\lhook\joinrel\relbar\joinrel\rightarrow}}
+\newcommand{\longtwoheadrightarrow}{\longrightarrow\hspace{-1.2em}\rightarrow\hspace{.2em}}
+
+\newcommand{\doneDate}{\today}
+\newcommand{\updateDate}[4]{\marginpar{\begin{center}#2 #1, #4\end{center}}\renewcommand{\doneDate}{#3 #1, #4}}
+%\updateDate{11}{Nov.}{November}{2011}
+
+\newcommand{\Ass}{\emph{Ass.}\hspace{1em}}
+\newcommand{\Then}{\textbf{Then} }
+\newcommand{\then}{\textbf{then} }
+\newcommand{\tfae}{\textbf{TFAE} }
+\newcommand{\wts}{\underline{wts}\hspace{1em}}
+\newcommand{\nts}{\underline{nts}\hspace{1em}}
+\newcommand{\mywlog}{\underline{wlog}\hspace{1em}}
+\newcommand{\case}{\underline{Case}\hspace{1em}}
+
+\newcommand{\Dann}{\textbf{Dann} }
+\newcommand{\dann}{\textbf{dann} }
+\newcommand{\gdw}{\emph{genau dann, wenn} }
+\newcommand{\Ang}{\emph{Ang.}\hspace{1em}}

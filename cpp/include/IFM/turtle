@@ -1,0 +1,31 @@
+// -----------------------------------------------------------------
+// file:     turtle
+// Version:  $Revision: 1.1 $  from  $Date: 1998/11/23 13:22:34 $
+// -----------------------------------------------------------------
+// provides a simple function-based turtle-graphic interface 
+
+#include <IFM/names>
+
+namespace IFM_NAMESPACE {
+
+  void forward(unsigned int n_steps = 1);
+  // POST: turtle has moved n_steps steps in its current direction.
+
+  void left(int deg = 1);
+  // POST: turtle has turned left by deg degrees.
+
+  void right(int deg = 1);
+  // POST: turtle has turned right by deg degrees.
+
+  void jump(unsigned int n_steps = 1);
+  // POST: turtle has jumped n_steps steps in its current direction.
+
+  void save();
+  // POST: current state has been pushed on a stack
+
+  void restore();
+  // POST: top state of stack has been restored
+
+} // namespace IFM_NAMESPACE
+
+// EOF

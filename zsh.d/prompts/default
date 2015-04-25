@@ -1,0 +1,6 @@
+#!/bin/zsh
+
+PS1="%{${fg[red]}%}/--(%{${fg[yellow]}%}%n@%M%{${fg[red]}%})--(%{${fg[yellow]}%}%/%{${fg[red]}%})
+%{${fg[red]}%}\--(%{${fg[yellow]}%}%B%1~%b%{${fg[red]}%})--> %{${fg[yellow]}%}%# %{${fg[white]}%}"
+
+RPS1="%(?.%{${fg[green]}%}.%{${fg[red]}%})%D{%R}%{${fg[default]}%}"

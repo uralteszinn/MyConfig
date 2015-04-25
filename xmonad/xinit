@@ -1,0 +1,8 @@
+#!/bin/bash
+
+source /home/laurin/.config/myconfig/xinit
+
+xmonadStalonetray &
+startupApps &
+
+xmonad

@@ -1,0 +1,11 @@
+//----------------------------------------------------------------------------
+// file: names
+// $Revision: $ from $Date: $
+// Comments to Michael Hoffmann <hoffmann@inf.ethz.ch>
+//----------------------------------------------------------------------------
+
+#define IFM_NAMESPACE ifm
+#define IFM_WINDOW_NAME "ifm::Wstream"
+#define IFM_TURTLE_NAME "Ifm Turtle"
+
+// EOF 

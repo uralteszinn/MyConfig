@@ -1,0 +1,17 @@
+"Search
+map -builtin k n
+map -builtin K N
+
+"Tabs
+map -builtin gi gt
+map -builtin gh gT
+
+"Bewegungen
+map -builtin n j
+map -builtin e k
+map -builtin u i
+map -builtin i l
+
+"History
+map -builtin H H
+map -builtin I L

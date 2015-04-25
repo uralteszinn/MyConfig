@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+if [[ $TTY == '/dev/pts'* ]] then
+  gvim --servername GVIM --remote-silent-tab $*
+else
+  vim $*
+fi

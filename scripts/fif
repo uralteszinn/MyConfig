@@ -1,0 +1,12 @@
+#!/bin/zsh
+pattern=$1
+shift
+for i in $*
+do
+  match=`cat $i | grep "$pattern"`
+  if [[ "$match" != "" ]] then
+    echo -e "\033[36m$i:\033[0m"
+    echo "$match" | tail -n 4
+    echo "\n"
+  fi
+done

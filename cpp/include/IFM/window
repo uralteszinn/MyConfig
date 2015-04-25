@@ -1,0 +1,559 @@
+//----------------------------------------------------------------------------
+// file: window
+// $Revision: 1.12 $ from $Date: 2001/11/28 15:05:33 $
+// provides a simple C++ interface to X11
+// originally based on libgraphics by Thomas Raschle
+// Comments to Michael Hoffmann <hoffmann@inf.ethz.ch>
+//----------------------------------------------------------------------------
+
+#include <X11/X.h>
+#include <X11/Xlib.h>
+#include <string>
+#include <IFM/names>
+
+namespace IFM_NAMESPACE {
+
+//----------------------------------------------------------------------------
+// base class for all drawable objects
+//
+
+struct Wstream;
+
+struct WstreamRep;
+
+struct BoundingBox;
+
+struct Drawable {
+  virtual ~Drawable() {}
+  virtual void draw( Wstream&, ::Drawable&, GC&) const = 0;
+  virtual BoundingBox bbox() const = 0;
+};
+
+struct Getable : public Drawable {
+  virtual ~Getable() {}
+  virtual void get( Wstream&, Window&) = 0;
+protected:
+  virtual void update( const Wstream&, Window&, int x, int y) = 0;
+  friend void handle_input( Wstream&, Getable&);
+};
+
+//----------------------------------------------------------------------------
+// base classes for different representations
+//
+
+struct TwoTuple {
+  TwoTuple() {}
+  TwoTuple(int x, int y) : _x(x), _y(y) {}
+protected:
+  int _x, _y;
+};
+
+struct ThreeTuple {
+  ThreeTuple() {}
+  ThreeTuple(int x, int y, int z) : _x(x), _y(y), _z(z) {}
+protected:
+  int _x, _y, _z;
+};
+
+struct FourTuple {
+  FourTuple() {}
+  FourTuple(int x1, int y1, int x2, int y2) 
+    : _x1(x1), _y1(y1), _x2(x2), _y2(y2) 
+  {}
+protected:
+  int _x1, _y1, _x2, _y2;
+};
+
+//----------------------------------------------------------------------------
+// bounding box class
+//
+
+struct BoundingBox : public FourTuple {
+  BoundingBox();
+  BoundingBox( int, int, int, int);
+  BoundingBox( const FourTuple&);
+  
+  void union_with( const BoundingBox&);
+
+  bool is_empty() const;
+  int x() const;
+  int y() const;
+  int width() const;
+  int height() const;
+};
+
+//----------------------------------------------------------------------------
+// base class for all window handle classes
+//
+
+struct Wstream {
+
+  Wstream( std::string str = IFM_WINDOW_NAME);
+  // POST: Creates a window with dimensions (512 x 512)
+  //   and name str and positions it with upper left corner 
+  //  (100, 100) on the X display.
+
+  Wstream( int xsize, int ysize, std::string str = IFM_WINDOW_NAME);
+  // PRE: 10 <= xsize, ysize <= 2048.
+  // POST: Creates a window with dimensions (xsize x ysize)
+  //   and name str and positions it with upper left corner 
+  //  (100, 100) on the X display.
+
+  Wstream( int xpos, int ypos, int xsize, int ysize, std::string str);
+  // PRE: 10 <= xsize, ysize <= 2048.
+  // POST: Creates a window with dimensions (xsize x ysize)
+  //   and name str and positions it with upper left corner 
+  //  (xpos, ypos) on the X display.
+  
+  // copy constructor
+  Wstream( const Wstream&);
+
+  // copy assignment
+  Wstream&
+  operator=( const Wstream&);
+
+  ~Wstream();
+  // POST: All dynamic data structures have been cleaned up.
+
+  int xmin() const;
+  // POST: returns minimal x-xoordinate in this window.
+
+  int xmax() const;
+  // POST: returns maximal x-xoordinate in this window.
+
+  int ymin() const;
+  // POST: returns minimal y-xoordinate in this window.
+
+  int ymax() const;
+  // POST: returns maximal y-xoordinate in this window.
+
+  friend 
+  Wstream&
+  operator<<( Wstream&, const Drawable& d);
+  // POST: d has been drawn into this window.
+
+  friend 
+  Wstream&
+  operator>>( Wstream&, Getable& d);
+  // POST: d has been set from this window.
+
+  friend 
+  Wstream&	
+  operator<<( Wstream&, Wstream& (*f)(Wstream&));
+  // POST: f has been run on this window.
+
+  Wstream& flush();
+  // POST: Buffer is flushed and all output is drawn into window.
+
+  Wstream& endl();
+  // POST: Buffer is flushed and all output is drawn into window.
+
+  Wstream& sync();
+  // POST: Buffer is flushed, all output is drawn into window
+  //   and all pending X-requests have been processed.
+
+  Wstream& clear();
+  // POST: Wstream is cleared (empty) and flushed.
+
+  Wstream& wait( unsigned long microsec);
+  // POST: Flushes buffer and waits for microsec microseconds.
+
+  bool check_key();
+  // POST: Returns true, iff there is a KeyRelease event pending.
+
+  bool check_mouse();
+  // POST: Returns true, iff there is a MouseMotion event pending.
+
+  bool check_mouse_click();
+  // POST: Returns true, iff there is a ButtonRelease event pending.
+
+  int get_key();
+  // POST: Flushes buffer, waits for a KeyRelease event and returns
+  //   the pressed key. (65 <=> A, 97 <=> a)
+  //   Expose events during the waiting period are handled.
+
+  void get_mouse( int& x, int& y);
+  // POST: Flushes buffer, waits for a MouseMotion event and
+  //   sets (x, y) to the mouse position.
+  //   Expose events during the waiting period are handled.
+
+  int get_mouse_click( int& x, int& y);
+  // POST: Flushes buffer, waits for a ButtonRelease event 
+  //   sets (x, y) to the mouse position and returns the number
+  //   of the pressed mouse button.
+  //   (1 <=> left, 2 <=> middle, 3 <=> right)
+  //   Expose events during the waiting period are handled.
+
+  void wait_for_mouse_click( int button = 0);
+  // PRE: 0 <= button <= 3.
+  // POST: Flushes buffer and waits until specified (0 <=> any)
+  //   mouse button gets released. 
+  //   Expose events during the waiting period are handled.
+  
+  Wstream& set_draw_mode( int m);
+  // POST: Drawing mode is set to m. 
+  // (See X.h for possible values, default is GXcopy.)
+
+  Wstream& set_line_width( int w);
+  // PRE: w > 0;
+  // POST: Drawing line width is set to w. (default is 1)
+
+  Wstream& set_color( int c);
+  // PRE: 0 <= c < number_of_colors().
+  // POST: Drawing color is set to c. 
+  // (Possible values include black(), white(), red(), orange(),
+  //  yellow(), green(), blue(), magenta() and purple().)
+
+  int number_of_colors() const;
+  // POST: return value is set to the number of available colors.
+
+protected:
+  WstreamRep* r;
+  
+  // used internally for event checking:
+  struct Event {
+    Event() {}
+    Event( XID t, int v, int x, int y) : _t( t),_v( v), _x( x), _y( y) {}
+    XID _t;
+    int _v, _x, _y;
+  };
+
+  Event last_event;
+  
+  void handle_expose_events();
+  bool check_event_mask( Mask mask);
+  void get_event_mask( Mask mask);
+  Wstream& wait_event( Mask);
+
+  friend void handle_input( Wstream&, Getable&);
+private:
+  // common constructor
+  void create( int, int, int, int, std::string);
+};
+
+
+//----------------------------------------------------------------------------
+// window representation class
+//
+
+struct WstreamRep {
+  WstreamRep( Pixmap p, Window w, GC g, GC mgc, int xs, int ys)
+    : _p( p), _w( w), _gc( g), _mgc( mgc), _xs( xs), _ys( ys), _rcount( 1)
+  {}
+  
+  Pixmap _p;
+  BoundingBox _bbox;
+  Window _w;
+  GC _gc, _mgc;
+  int _xs, _ys;
+  unsigned int _rcount;
+};
+
+
+//----------------------------------------------------------------------------
+// the window proxy class
+//
+
+struct WstreamProxy {
+
+  WstreamProxy();
+  // POST: No Initialisation so far.
+  //   The Object is (only) initialised, when the first object
+  //   is drawn into it.
+
+  WstreamProxy(const WstreamProxy&);
+  // POST: No Initialisation so far.
+  //   The Object is (only) initialised, when the first object
+  //   is drawn into it.
+
+  ~WstreamProxy();
+  // POST: All dynamic data structures have been cleaned up.
+
+  operator Wstream&();
+  // POST: Conversion to Wstream. Initialization, if necessary.
+
+  int xmin();
+  // POST: returns minimal x-xoordinate in this window.
+
+  int xmax();
+  // POST: returns maximal x-xoordinate in this window.
+
+  int ymin();
+  // POST: returns minimal y-xoordinate in this window.
+
+  int ymax();
+  // POST: returns maximal y-xoordinate in this window.
+
+  Wstream& flush();
+  // POST: Buffer is flushed and all output is drawn into window.
+
+  Wstream& endl();
+  // POST: Buffer is flushed and all output is drawn into window.
+
+  Wstream& sync();
+  // POST: Buffer is flushed, all output is drawn into window
+  //   and all pending X-requests have been processed.
+
+  Wstream& clear();
+  // POST: Wstream is cleared (empty) and flushed.
+
+  Wstream& wait( unsigned long microsec);
+  // POST: Flushes buffer and waits for microsec microseconds.
+
+  Wstream& wait_event( XID);
+  // POST: Flushes buffer and waits for an event of the specified type.
+
+  bool check_key();
+  // POST: Returns true, iff there is a KeyRelease event pending.
+
+  bool check_mouse();
+  // POST: Returns true, iff there is a MouseMotion event pending.
+
+  bool check_mouse_click();
+  // POST: Returns true, iff there is a ButtonRelease event pending.
+
+  int get_key();
+  // POST: Flushes buffer, waits for a KeyRelease event and returns
+  //   the pressed key. (65 <=> A, 97 <=> a)
+  //   Expose events during the waiting period are handled.
+
+  void get_mouse( int& x, int& y);
+  // POST: Flushes buffer, waits for a MouseMotion event and
+  //   sets (x, y) to the mouse position.
+  //   Expose events during the waiting period are handled.
+
+  int get_mouse_click( int& x, int& y);
+  // POST: Flushes buffer, waits for a ButtonRelease event 
+  //   sets (x, y) to the mouse position and returns the number
+  //   of the pressed mouse button.
+  //   (1 <=> left, 2 <=> middle, 3 <=> right)
+  //   Expose events during the waiting period are handled.
+
+  void wait_for_mouse_click( int button = 0);
+  // PRE: 0 <= button <= 3.
+  // POST: Flushes buffer and waits until specified (0 <=> any)
+  //   mouse button gets released. 
+  //   Expose events during the waiting period are handled.
+  
+  Wstream& set_draw_mode( int m);
+  // POST: Drawing mode is set to m. 
+  // (See X.h for possible values, default is GXcopy.)
+
+  Wstream& set_line_width( int w);
+  // PRE: w > 0;
+  // POST: Drawing line width is set to w. (default is 1)
+
+  Wstream& set_color( int c);
+  // PRE: 0 <= c <= number_of_colors().
+  // POST: Drawing color is set to c. 
+  // (Possible values include black(), white(), red(), orange(),
+  //  yellow(), green(), blue(), magenta() and purple().)
+
+  int number_of_colors();
+  // POST: return value is set to the number of available colors.
+
+private:
+  Wstream* rw;
+
+  Wstream& cast();
+};
+
+// the default WstreamRep object
+extern WstreamProxy wio;
+
+//----------------------------------------------------------------------------
+// helper classes for the manipulators
+//
+
+struct TimerIntervall : public Drawable {
+  TimerIntervall( unsigned long t) : time( t) {}
+  void draw( Wstream& w, ::Drawable&, GC&) const;
+  BoundingBox bbox() const;
+private:
+  unsigned long time;
+};
+
+struct LineWidth : public Drawable {
+  LineWidth( int w) : width( w) {}
+  void draw( Wstream& w, ::Drawable&, GC&) const;
+  BoundingBox bbox() const;
+private:
+  int width;
+};
+
+struct Color : public Drawable {
+  Color( int c) : color( c) {}
+  void draw( Wstream& w, ::Drawable&, GC&) const;
+  BoundingBox bbox() const;
+private:
+  int color;
+};
+
+struct DrawMode : public Drawable {
+  DrawMode( int m) : mode( m) {}
+  void draw( Wstream& w, ::Drawable&, GC&) const;
+  BoundingBox bbox() const;
+private:
+  int mode;
+};
+
+//----------------------------------------------------------------------------
+// general output operators
+//
+
+Wstream& operator<<( Wstream&, const Drawable& d);
+
+Wstream& operator<<( Wstream&, Wstream& (*f)(Wstream&));
+
+Wstream& operator>>( Wstream& w, Getable& d);
+
+Wstream& flush( Wstream&);
+
+Wstream& sync( Wstream&);
+
+Wstream& endl( Wstream&);
+
+Wstream& clear( Wstream&);
+
+TimerIntervall wait( unsigned long);
+
+LineWidth line_width( int);
+
+DrawMode draw_mode( int);
+
+Color color( int);
+
+// shortcuts for drawing modes:
+
+Wstream& copy_mode( Wstream&);
+
+Wstream& clear_mode( Wstream&);
+
+Wstream& xor_mode( Wstream&);
+
+Wstream& or_mode( Wstream&);
+
+Wstream& and_mode( Wstream&);
+
+// shortcuts for colors:
+
+Wstream& white( Wstream&);
+
+Wstream& black( Wstream&);
+
+Wstream& red( Wstream&);
+
+Wstream& orange( Wstream&);
+
+Wstream& yellow( Wstream&);
+
+Wstream& green( Wstream&);
+
+Wstream& lightgreen( Wstream&);
+
+Wstream& blue( Wstream&);
+
+Wstream& magenta( Wstream&);
+
+Wstream& pink( Wstream&);
+
+Wstream& purple( Wstream&);
+
+//----------------------------------------------------------------------------
+// object classes
+//
+
+struct Point : public Getable, public TwoTuple {
+  Point() {}
+  Point( int x, int y) : TwoTuple( x, y) {}
+  int x() const;
+  int y() const;
+  BoundingBox bbox() const;
+  void get( Wstream&, Window& w);
+  void draw( Wstream&, ::Drawable& w, GC&) const;
+protected:
+  void update( const Wstream&, Window&, int x, int y);
+};
+
+struct Line : public Getable, public FourTuple {
+  Line() {}
+  Line( int x1, int y1, int x2, int y2) : FourTuple( x1, y1, x2, y2) {}
+  int x1() const;
+  int y1() const;
+  int x2() const;
+  int y2() const;
+  BoundingBox bbox() const;
+  void get( Wstream&, Window& w);
+  void draw( Wstream&, ::Drawable& w, GC&) const;
+protected:
+  void update( const Wstream&, Window&, int x, int y);
+  int _get_state;
+};
+
+struct Rectangle : public Getable, public FourTuple {
+  Rectangle() {}
+  Rectangle( int x1, int y1, int x2, int y2) : FourTuple( x1, y1, x2, y2) {}
+  int x1() const;
+  int y1() const;
+  int x2() const;
+  int y2() const;
+  BoundingBox bbox() const;
+  void get( Wstream&, Window& w);
+  void draw( Wstream&, ::Drawable& w, GC&) const;
+protected:
+  void update( const Wstream&, Window&, int x, int y);
+  int _get_state;
+};
+
+struct FilledRectangle : public Rectangle {
+  FilledRectangle() {}
+  FilledRectangle( int x1, int y1, int x2, int y2) 
+    : Rectangle( x1, y1, x2, y2)
+  {}
+  void draw( Wstream&, ::Drawable& w, GC&) const;
+};
+
+struct Circle : public Getable, public ThreeTuple {
+  Circle() {}
+  Circle(int x, int y, int rad) : ThreeTuple( x, y, rad) {}
+  int x() const;
+  int y() const;
+  int r() const;
+  BoundingBox bbox() const;
+  void get( Wstream&, Window& w);
+  void draw( Wstream&, ::Drawable& w, GC&) const;
+protected:
+  void update( const Wstream&, Window&, int x, int y);
+  int _get_state;
+};
+
+struct FilledCircle : public Circle {
+  FilledCircle() {}
+  FilledCircle( int x, int y, int rad) : Circle( x, y, rad) {}
+  void draw( Wstream&, ::Drawable& w, GC&) const;
+};
+
+struct Ellipse : public Getable, public FourTuple {
+  Ellipse() {}
+  Ellipse( int x, int y, int w, int h) : FourTuple( x, y, w, h) {}
+  int x() const;
+  int y() const;
+  int w() const;
+  int h() const;
+  BoundingBox bbox() const;
+  void get( Wstream&, Window& w);
+  void draw( Wstream&, ::Drawable& w, GC&) const;
+protected:
+  void update( const Wstream&, Window&, int x, int y);
+  int _get_state;
+};
+
+struct FilledEllipse : public Ellipse {
+  FilledEllipse() {}
+  FilledEllipse( int x, int y, int w, int h) : Ellipse( x, y, w, h) {}
+  void draw( Wstream&, ::Drawable& w, GC&) const;
+};
+
+} // namespace IFM_NAMESPACE
+
+// EOF

@@ -1,0 +1,10 @@
+#!/usr/bin/ruby
+
+file = ARGV[0]
+type = ARGV[1]
+
+if file =~ /\.#{type}$/
+  puts true
+else
+  puts false
+end
