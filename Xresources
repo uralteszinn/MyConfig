@@ -1,6 +1,1 @@
 XCursor.theme: pinux
-!xterm*font: *-fixed-*-*-*-18-*
-!xterm*faceName: xft:Bitstream Vera Sans Mono:pixelsize=12
-xterm*faceSize: 12
-XTerm*foreground: gray
-XTerm*background: black

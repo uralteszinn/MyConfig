@@ -10,11 +10,16 @@ URxvt.urlLauncher: firefox
 URxvt.matcher.button: 1
 URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 URxvt*termName: rxvt-unicode
-
 #URxvt.colorIT: #00ff00
 #URxvt.colorBD: #ffa812
 #URxvt.colorUL: #ff0000
 
 
+xterm*faceName: xft:Bitstream Vera Sans Mono:pixelsize=14
+xterm*foreground: gray
+xterm*background: black
+xterm*internalBorder: 10
+!xterm*selectToClipboard: true
+xterm*utf8: 1
 !XTerm*color0: rgb:28/28/28
 !XTerm*color15: rgb:e4/e4/e4
