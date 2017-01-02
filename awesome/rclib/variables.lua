@@ -1,4 +1,4 @@
-modkey            = "Mod1"
+modkey            = "Mod4"
 
 ico_path          = lib_path .. "Icons/"
 wlp_path          = lib_path .. "Wallpapers/"

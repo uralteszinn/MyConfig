@@ -38,7 +38,7 @@ inoremap <Leader>ms<SPACE> \left( \begin{smallmatrix}  \end{smallmatrix} \right)
 inoremap <Leader>mp<CR> \begin{pmatrix}<CR><CR>\end{pmatrix}<CR><++><ESC>kkA
 inoremap <Leader>M \mathbb{}<++><ESC>?{}<CR>a
 inoremap <Leader>C \mathcal{}<++><ESC>?{}<CR>a
-inoremap <Leader>/ \frac{}{<++>}<++><ESC>?{}<CR>a
+inoremap <Leader>/ \frac{<++>}{<++>}<++><ESC>?frac<CR>i
 inoremap <Leader>2 \sqrt[]{<++>}<++><ESC>?[]<CR>a
 inoremap <Leader>t \text{}<++><ESC>?{}<CR>a
 inoremap <Leader>_ \underline{}<++><ESC>?{}<CR>a

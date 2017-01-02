@@ -237,13 +237,10 @@
 ::table::
 \begin{table}<<VIM:INPUT|1|Optional Argument||[|]>>
     \centering
-    <<VIM:EMPTY>>
     \begin{tabular}{<++>}
         <++>
     \end{tabular}
-    <<VIM:EMPTY>>
-    \caption{<<VIM:INPUT|2|Name>>}
-    \label{table-<<VIM:RANDOM>>}
+    \caption{<<VIM:INPUT|2|Name>>}<<VIM:INPUT|3|Label||\label{table-|}|>>
 \end{table}<++>
 
 
@@ -262,16 +259,19 @@
 \begin{itemize}
 <<VIM:TAB>>\item <++>
 \end{itemize}
+<++>
 
 ::enumerate::
 \begin{enumerate}
 <<VIM:TAB>>\item <++>
 \end{enumerate}
+<++>
 
 ::description::
 \begin{description}
 <<VIM:TAB>>\item[<++>] <++>
 \end{description}
+<++>
 
 ::item::
 <<VIM:EMPTY>>
@@ -283,51 +283,76 @@
 
 
 ::part::
-\part<<VIM:CHOICE|1|With Number?|,*>>{<<VIM:INPUT|1|Title>>}
-\label{part-<<VIM:RANDOM>>}
+\part<<VIM:CHOICE|1|With Number?|,*>>{<<VIM:INPUT|1|Title>>}<<VIM:INPUT|2|Label||\label{part-|}|>>
 <++>
 
 ::chapter::
-\chapter<<VIM:CHOICE|1|With Number?|,*>>{<<VIM:INPUT|1|Title>>}
-\label{chapter-<<VIM:RANDOM>>}
+\chapter<<VIM:CHOICE|1|With Number?|,*>>{<<VIM:INPUT|1|Title>>}<<VIM:INPUT|2|Label||\label{chapter-|}|>>
 <++>
 
 ::section::
-\section<<VIM:CHOICE|1|With Number?|,*>>{<<VIM:INPUT|1|Title>>}
-\label{section-<<VIM:RANDOM>>}
+\section<<VIM:CHOICE|1|With Number?|,*>>{<<VIM:INPUT|1|Title>>}<<VIM:INPUT|2|Label||\label{section-|}|>>
 <++>
 
 ::subsection::
-\subsection<<VIM:CHOICE|1|With Number?|,*>>{<<VIM:INPUT|1|Title>>}
-\label{subsection-<<VIM:RANDOM>>}
+\subsection<<VIM:CHOICE|1|With Number?|,*>>{<<VIM:INPUT|1|Title>>}<<VIM:INPUT|2|Label||\label{subsection-|}|>>
 <++>
 
 ::subsubsection::
-\subsubsection<<VIM:CHOICE|1|With Number?|,*>>{<<VIM:INPUT|1|Title>>}
-\label{subsubsection-<<VIM:RANDOM>>}
+\subsubsection<<VIM:CHOICE|1|With Number?|,*>>{<<VIM:INPUT|1|Title>>}<<VIM:INPUT|2|Label||\label{subsubsection-|}|>>
 <++>
 
 ::paragraph::
-\paragraph<<VIM:CHOICE|1|With Number?|,*>>{<<VIM:INPUT|1|Title>>}
-\label{paragraph-<<VIM:RANDOM>>}
+\paragraph<<VIM:CHOICE|1|With Number?|,*>>{<<VIM:INPUT|1|Title>>}<<VIM:INPUT|2|Label||\label{paragraph-|}|>>
 <++>
 
 ::subparagraph::
-\subparagraph<<VIM:CHOICE|1|With Number?|,*>>{<<VIM:INPUT|1|Title>>}
-\label{subparagraph-<<VIM:RANDOM>>}
+\subparagraph<<VIM:CHOICE|1|With Number?|,*>>{<<VIM:INPUT|1|Title>>}<<VIM:INPUT|2|Label||\label{subparagraph-|}|>>
 <++>
 
+::thm::
+\begin{thm}<<VIM:INPUT|1|Optional Argument||[|]>><<VIM:INPUT|2|Label||\label{thm-|}|>>
+    <++>
+\end{thm}<++>
+
+::prop::
+\begin{prop}<<VIM:INPUT|1|Optional Argument||[|]>><<VIM:INPUT|2|Label||\label{prop-|}|>>
+    <++>
+\end{prop}<++>
+
+::lem::
+\begin{lem}<<VIM:INPUT|1|Optional Argument||[|]>><<VIM:INPUT|2|Label||\label{lem-|}|>>
+    <++>
+\end{lem}<++>
+
+::cor::
+\begin{cor}<<VIM:INPUT|1|Optional Argument||[|]>><<VIM:INPUT|2|Label||\label{cor-|}|>>
+    <++>
+\end{cor}<++>
+
+::defn::
+\begin{defn}<<VIM:INPUT|1|Optional Argument||[|]>><<VIM:INPUT|2|Label||\label{defn-|}|>>
+    <++>
+\end{defn}<++>
+
+::ex::
+\begin{ex}<<VIM:INPUT|1|Optional Argument||[|]>><<VIM:INPUT|2|Label||\label{ex-|}|>>
+    <++>
+\end{ex}<++>
+
+::rmk::
+\begin{rmk}<<VIM:INPUT|1|Optional Argument||[|]>><<VIM:INPUT|2|Label||\label{rmk-|}|>>
+    <++>
+\end{rmk}<++>
+
 ::label::
-\label{<<VIM:INPUT|1|Category>>-<<VIM:RANDOM>>}<++>
+\label{<<VIM:INPUT|1|Category>>-<<VIM:INPUT|2|Name>>}<++>
 
 ::figure::
 \begin{figure}<<VIM:INPUT|1|Optional Argument||[|]>>
     \centering
-    <<VIM:EMPTY>>
     <++>
-    <<VIM:EMPTY>>
-    \caption{<<VIM:INPUT|1|Name>>}
-    \label{figure-<<VIM:RANDOM>>}
+    \caption{<<VIM:INPUT|1|Name>>}<<VIM:INPUT|2|Label||\label{figure-|}|>>
 \end{figure}<++>
 
 ::img::
@@ -398,7 +423,7 @@
 ::R::
 \mathbb{R}<++>
 
-::pmatrixinline::
+::pmatrix::
 \begin{pmatrix} <++> \end{pmatrix} <++>
 
 ::smallmatrix::

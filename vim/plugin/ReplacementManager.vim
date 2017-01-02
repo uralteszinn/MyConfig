@@ -1,6 +1,6 @@
 " <<VIM:KEYWORD>>
 " <<VIM:KEYWORD|Number|Prompt|Important|Optional Before|Optional After>>
-" <<VIM:KEYWORD|Number>>
+" <<VIM:KEYWORD|Number>>     (if Number already occured, input is taken from there)
 "
 " <<VIM:NOWHITESPACEPART>    (if present removes the whitespacepart in this line)
 " <<VIM:NOBEFOREPART>        (if present removes the beforepart in this line)

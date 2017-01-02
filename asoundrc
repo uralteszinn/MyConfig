@@ -1,11 +1,11 @@
 pcm.!default {
   type hw
-  card PCH
+  card 1
 }
 
 ctl.!default {
   type hw
-  card PCH
+  card 1
 }
 
 #pcm.!default {

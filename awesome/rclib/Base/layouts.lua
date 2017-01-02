@@ -22,12 +22,12 @@ layouts = {
 -- Keys
 
 globalkeys = awful.util.table.join(globalkeys,
-  awful.key({ "Mod4"            }, "f",     function () awful.layout.set(layouts.fullscreen) end),
-  awful.key({ "Mod4"            }, "m",     function () awful.layout.set(layouts.max) end),
-  awful.key({ "Mod4"            }, "h",     function () awful.layout.set(layouts.horizontal) end),
-  awful.key({ "Mod4"            }, "v",     function () awful.layout.set(layouts.vertical) end),
-  awful.key({ "Mod4"            }, "d",     function () awful.layout.set(layouts.default) end),
+  awful.key({ "Mod4", "Shift"   }, "f",     function () awful.layout.set(layouts.fullscreen) end),
+  awful.key({ "Mod4", "Shift"   }, "m",     function () awful.layout.set(layouts.max) end),
+  awful.key({ "Mod4", "Shift"   }, "h",     function () awful.layout.set(layouts.horizontal) end),
+  awful.key({ "Mod4", "Shift"   }, "v",     function () awful.layout.set(layouts.vertical) end),
+  awful.key({ "Mod4", "Shift"   }, "d",     function () awful.layout.set(layouts.default) end),
 
-  awful.key({ "Mod4",           }, "space", function () awful.layout.inc(layouts,  1) end),
-  awful.key({ "Mod4", "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end)
+  awful.key({ "Mod4", "Shift"   }, "space", function () awful.layout.inc(layouts,  1) end)
+  --awful.key({ "Mod4", "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end)
 )

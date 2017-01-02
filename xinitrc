@@ -11,6 +11,7 @@ xmodmap -e "keycode 65 = space space space space Cyrillic_sha"
 xmodmap -e "keycode 94 = Escape Escape Escape Escape Cyrillic_schwa" # For awesome this command doesn't work, it's integrated in the awesome config
 xmodmap -e "keycode 112 = Prior XF86ScrollUp"
 xmodmap -e "keycode 117 = Next XF86ScrollDown"
+xmodmap -e "keycode 151 = "
 
 #xcompmgr
 
