@@ -2,7 +2,8 @@
 
 . /etc/X11/xinit/xinitrc.d/* # For blueman nautilus support
 
-setxkbmap -layout us\(colemak\),ch,us,us\(dvp\) -option grp:sclk_toggle
+#setxkbmap -layout us\(colemak\),ch,us,us\(dvp\) -option grp:sclk_toggle
+setxkbmap -layout us\(colemak\),ch -option grp:sclk_toggle
 xsetroot -cursor_name left_ptr
 xset r 66
 
